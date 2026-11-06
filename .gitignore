@@ -1,0 +1,14 @@
+results/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.venv
+snapshots/0*/
+snapshots/
+snapshots_zip/
+snapshots/
+snapshots_zip/
+starter/
+solution/_legacy_unused/
+*.pdf
