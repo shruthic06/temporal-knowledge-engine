@@ -1,4 +1,3 @@
-"""Structured rate-table reasoning: pick the right table, the right tier/term/year, the right column."""
 from __future__ import annotations
 
 import re

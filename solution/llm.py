@@ -1,10 +1,3 @@
-"""Optional LLM answer step.
-
-The LLM never decides which *document* is current -- retrieval already ranks evidence by
-authority and document date and labels each excerpt.  The LLM only reads the selected excerpts
-and phrases the final answer.  Any failure (no key, timeout, bad JSON, invented number) returns
-None and the caller keeps the deterministic rule answer.
-"""
 from __future__ import annotations
 
 import json

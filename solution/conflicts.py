@@ -1,11 +1,3 @@
-"""Find places where the website contradicts itself (across pages, across snapshots, inside a table).
-
-Every rate-table row from every page version becomes a *fact*: (what it is, which column, value, where,
-when).  Facts that describe the same thing but carry different values form a conflict.  The winner is the
-value from the most authoritative page that is still live in the newest snapshot; ties go to the newest
-effective date.  Repeated numeric facts in prose (branch counts, employee counts) are handled the same way,
-with the newest-dated document winning.
-"""
 from __future__ import annotations
 
 import re

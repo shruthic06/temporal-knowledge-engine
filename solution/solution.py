@@ -1,13 +1,3 @@
-"""Knowledge system that answers from website snapshots and knows what is true *now*.
-
-Design (see NOTES.md):
-  * every page version is kept; a passage/table is "valid" in the snapshots it appeared in
-  * answers are built only from evidence valid at the requested date (as_of) -> history-safe
-  * rate questions go through a structured table reader (right table, right tier/term/year)
-  * text questions use BM25 + authority + document-date recency to pick the current statement
-  * optional LLM step (ANTHROPIC_API_KEY) only *phrases* answers from selected evidence; it never
-    chooses which value is current, and it falls back to the rule answer on any problem
-"""
 from __future__ import annotations
 
 import os

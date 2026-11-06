@@ -1,12 +1,3 @@
-"""Core data layer: cleaning, page parsing, and a SQLite-backed versioned store with a BM25 index.
-
-Nothing here knows any answer. It only turns snapshots into searchable, dated,
-authority-tagged evidence.
-
-Storage rule: every piece of corpus state (page versions, passages, postings, term statistics, parsed
-rate tables, row fingerprints, the answer cache) lives in SQLite tables. Python holds no corpus-sized
-dict/list/set between calls -- only short-lived local variables inside a single query.
-"""
 from __future__ import annotations
 
 import atexit
