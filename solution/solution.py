@@ -109,6 +109,18 @@ class Knowledge:
         if "saving" in q.toks:
             terms.add("share")
         tabs = self._tables(k, terms=terms)
+                # Keep credit-card questions focused on credit-card products.
+        if re.search(r"\bcredit\s+cards?\b", question, re.I):
+            card_tabs = [
+                item for item in tabs
+                if re.search(
+                    r"\b(credit\s+card|visa)\b",
+                    item[0] + " " + item[2].ctx + " " + " ".join(item[2].headers),
+                    re.I,
+                )
+            ]
+            if card_tabs:
+                tabs = card_tabs
         if not tabs:
             if next(self.store.table_rows.iter(bit=1 << k, usable=True, skip_kinds=("calc", "file")), None) is None:
                 return None
@@ -158,7 +170,16 @@ class Knowledge:
         lines, srcs, notes = [], [], []
         for url, kind, t in chosen:
             rows_ok = []
+            seen_rows = set()
+
             for r in t.rows:
+                row_key = tuple(str(cell).strip() for cell in r)
+
+                if row_key in seen_rows:
+                    continue
+
+                seen_rows.add(row_key)
+
                 s, ok = R.score_row(q, t, r)
                 if ok:
                     rows_ok.append((s, r))
